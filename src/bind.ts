@@ -6,8 +6,8 @@ if (!Function.prototype.bind) {
 function bind(asThis, ...args) {
   // this 就是函数
   const fn = this
-  return function() {
-    return fn.call(asThis, ...args) // 返回这个函数
+  return function(...args2) {
+    return fn.call(asThis, ...args, ...args2) // 返回这个函数
   }
 }
 
