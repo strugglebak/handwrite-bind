@@ -12,14 +12,14 @@ describe('bind', () => {
   it('测试 bind2 !== undefined', () => {
     assert((Function.prototype as any).bind2 !== undefined)
   })
-  it('测试函数 bind2 传第一个参数 asThis', () => {
+  it('测试 fn.bind(asThis)', () => {
     const fn = function(){
       return this
     }
     const newFn = (fn as any).bind2({name: 'xxx'})
     assert(newFn().name === 'xxx')
   })
-  it('测试函数 bind2 传两个参数 p1, p2', () => {
+  it('测试 fn.bind(asThis, p1, p2)', () => {
     const fn = function(p1, p2){
       return [this, p1, p2]
     }
