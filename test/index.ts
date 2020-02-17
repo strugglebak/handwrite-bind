@@ -37,4 +37,13 @@ describe('bind', () => {
     assert(newFn(123, 456)[1] === 123)
     assert(newFn(123, 456)[2] === 456)
   })
+  it('测试 fn.bind(asThis, p1)(p2)', () => {
+    const fn = function(p1, p2){
+      return [this, p1, p2]
+    }
+    const newFn = (fn as any).bind2({name: 'xxx'}, 123)
+    assert(newFn(456)[0].name === 'xxx')
+    assert(newFn(456)[1] === 123)
+    assert(newFn(456)[2] === 456)
+  })
 })
