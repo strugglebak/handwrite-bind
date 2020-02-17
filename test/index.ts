@@ -19,4 +19,13 @@ describe('bind', () => {
     const newFn = (fn as any).bind2({name: 'xxx'})
     assert(newFn().name === 'xxx')
   })
+  it('测试函数 bind2 传两个参数 p1, p2', () => {
+    const fn = function(p1, p2){
+      return [this, p1, p2]
+    }
+    const newFn = (fn as any).bind2({name: 'xxx'}, 123, 456)
+    assert(newFn()[0].name === 'xxx')
+    assert(newFn()[1] === 123)
+    assert(newFn()[2] === 456)
+  })
 })
