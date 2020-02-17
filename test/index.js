@@ -65,6 +65,19 @@ describe('bind', () => {
     assert(fn.prototype.isPrototypeOf(object))
     assert(typeof object.sayHi === 'function')
   })
+  it('测试不用 new 但是用类似的对象', () => {
+    const fn = function(p1, p2) {
+      this.p1 = p1
+      this.p2 = p2
+    }
+    fn.prototype.sayHi = function(){}
+    const object1 = new fn('a', 'b')
+    const fn2 = fn.bind2(object1, 123, 456)
+    const object = fn2() // 这里就没有用 new
+    assert(object === undefined)
+    assert(object1.p1 === 123)
+    assert(object1.p2 === 456)
+  })
 })
 
 function describe(name, cb) {
