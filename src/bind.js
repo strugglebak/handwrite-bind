@@ -1,8 +1,3 @@
-if (!Function.prototype.bind) {
-  // polyfill
-  Function.prototype.bind = bind
-}
-
 // es3 兼容性更强的语法
 var slice = Array.prototype.slice
 function bind(asThis) {
@@ -25,9 +20,19 @@ function bind(asThis) {
 function _bind(asThis, ...args) {
   // this 就是函数
   const fn = this
-  return function(...args2) {
-    return fn.call(asThis, ...args, ...args2) // 返回这个函数
+  return function resultFn(...args2) {
+    return fn.call(
+      // 支持 new 操作符
+      this.__proto__ === resultFn.prototype ? this : asThis, 
+      ...args, 
+      ...args2
+    ) // 返回这个函数
   }
 }
 
-export default bind
+module.exports = _bind
+
+if (!Function.prototype.bind) {
+  // polyfill
+  Function.prototype.bind = _bind
+}

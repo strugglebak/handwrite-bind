@@ -6,7 +6,7 @@
   "author": "moss <dxp157@sohu.com>",
   "license": "MIT",
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.ts"
+    "test": "mocha -r ts-node/register test/**/*.js"
   },
   "devDependencies": {
     "@types/chai": "^4.2.9",
