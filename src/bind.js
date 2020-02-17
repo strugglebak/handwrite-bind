@@ -8,12 +8,18 @@ function bind(asThis) {
   if (typeof fn !== 'function') {// 出错判断
     throw new Error('必须是函数才能调用 bind')
   }
-  return function() {
+  function resultFn() {
     // 这里 args2 取全部的参数
     var args2 = slice.call(arguments, 0)
     // 参数拼接(这里不能用 call 了只能用 apply，因为 ... 没有了)
-    return fn.apply(asThis, args.concat(args2))
+    return fn.apply(
+      resultFn.prototype.isPrototypeOf(this) ? this : asThis, 
+      args.concat(args2)
+    )
   }
+
+  resultFn.prototype = fn.prototype
+  return resultFn
 }
 
 // es6 新语法代码
