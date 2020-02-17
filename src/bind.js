@@ -20,7 +20,7 @@ function bind(asThis) {
 function _bind(asThis, ...args) {
   // this 就是函数
   const fn = this
-  return function resultFn(...args2) {
+  function resultFn(...args2) {
     return fn.call(
       // 支持 new 操作符
       this.__proto__ === resultFn.prototype ? this : asThis, 
@@ -28,6 +28,8 @@ function _bind(asThis, ...args) {
       ...args2
     ) // 返回这个函数
   }
+  resultFn.prototype = fn.prototype
+  return resultFn
 }
 
 module.exports = _bind
