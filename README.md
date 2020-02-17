@@ -31,7 +31,7 @@ new fn('x')
   fn.call(temp, 'x')
   ```
 
-- 最后返回 `this`
+- 把 `fn` 的 `this` 作为返回值给 `return` 出来
 
   ```js
   return this
