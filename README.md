@@ -13,7 +13,7 @@ var fn = function(a) {
 new fn('x')
 ```
 
-- 申明一个临时对象
+- 声明一个临时对象
 
   ```js
   var temp = {}
