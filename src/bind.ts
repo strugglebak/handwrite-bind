@@ -3,11 +3,11 @@ if (!Function.prototype.bind) {
   Function.prototype.bind = bind
 }
 
-function bind(asThis, p1?, p2?) {
+function bind(asThis, ...args) {
   // this 就是函数
   const fn = this
   return function() {
-    return fn.call(asThis, p1, p2) // 返回这个函数
+    return fn.call(asThis, ...args) // 返回这个函数
   }
 }
 
