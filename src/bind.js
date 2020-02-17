@@ -23,7 +23,10 @@ function _bind(asThis, ...args) {
   function resultFn(...args2) {
     return fn.call(
       // 支持 new 操作符
-      this.__proto__ === resultFn.prototype ? this : asThis, 
+      // 不推荐(因为浏览器的各种 __proto__ 是他们自己加上去的，不是 es 标准里面的)
+      // this.__proto__ === resultFn.prototype ? this : asThis, 
+      // 使用官方推荐的写法
+      this instanceof resultFn ? this : asThis,
       ...args, 
       ...args2
     ) // 返回这个函数

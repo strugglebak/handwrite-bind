@@ -71,6 +71,6 @@ function describe(name, cb) {
   cb()
 }
 function it(name, cb) {
-  console.log(name)
+  console.log('\t', name)
   cb()
 }
