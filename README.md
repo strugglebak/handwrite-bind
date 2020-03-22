@@ -1,4 +1,4 @@
-# bind
+# handwrite-bind
 手写 bind
 
 对于 `new` 来说，它做了 4 步操作
